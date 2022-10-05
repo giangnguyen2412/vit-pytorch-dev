@@ -259,9 +259,9 @@ class CrossViT(nn.Module):
         self.sm_mlp_head = nn.Sequential(nn.LayerNorm(sm_dim), nn.Linear(sm_dim, num_classes))
         self.lg_mlp_head = nn.Sequential(nn.LayerNorm(lg_dim), nn.Linear(lg_dim, num_classes))
 
-    def forward(self, img):
-        sm_tokens = self.sm_image_embedder(img)
-        lg_tokens = self.lg_image_embedder(img)
+    def forward(self, img1, img2):
+        sm_tokens = self.sm_image_embedder(img1)
+        lg_tokens = self.lg_image_embedder(img2)
 
         sm_tokens, lg_tokens = self.multi_scale_encoder(sm_tokens, lg_tokens)
 
